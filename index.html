@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>China Steel Map - Final (CartoDB)</title>
+  <title>China Steel Map - Final Top 50</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -48,49 +48,207 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 18
 }).addTo(map);
 
-// Steel mills
-const mills = [
-  { name: "Baosteel", lat: 31.3, lon: 121.5 },
-  { name: "Rizhao Steel", lat: 35.4, lon: 119.5 },
-  { name: "Shougang Group", lat: 39.9, lon: 116.3 }
-];
-
-mills.forEach(m => {
-  m.marker = L.marker([m.lat, m.lon]).addTo(map)
-    .bindPopup("<b>" + m.name + "</b>")
-    .bindTooltip(m.name);
-});
-
-// Ports
-const ports = [
-  { name: "Port of Shanghai", lat: 31.4, lon: 121.8 },
-  { name: "Port of Tianjin", lat: 39.0, lon: 117.7 },
-  { name: "Port of Guangzhou", lat: 23.1, lon: 113.3 }
-];
-
-ports.forEach(p => {
-  L.circleMarker([p.lat, p.lon], {
-    radius: 6,
-    color: "blue",
-    fillColor: "#33f",
-    fillOpacity: 0.8
-  }).addTo(map).bindPopup("<b>" + p.name + "</b>").bindTooltip(p.name);
-});
-
-// Province capitals
-const capitals = [
-  { name: "Beijing", lat: 39.9042, lon: 116.4074 },
-  { name: "Shanghai", lat: 31.2304, lon: 121.4737 },
-  { name: "Guangzhou", lat: 23.1291, lon: 113.2644 },
-  { name: "Wuhan", lat: 30.5928, lon: 114.3055 },
-  { name: "Chengdu", lat: 30.5728, lon: 104.0668 }
-];
-
-capitals.forEach(c => {
-  L.marker([c.lat, c.lon]).addTo(map)
-    .bindPopup("<b>" + c.name + "</b>")
-    .bindTooltip(c.name);
-});
+let mills = [];
+  m = L.marker([31.3, 121.5]).addTo(map)
+    .bindPopup("<b>Baosteel</b>")
+    .bindTooltip("Baosteel");
+  mills.push({name: "Baosteel", lat: 31.3, lon: 121.5, marker: m});
+  m = L.marker([35.4, 119.5]).addTo(map)
+    .bindPopup("<b>Rizhao Steel</b>")
+    .bindTooltip("Rizhao Steel");
+  mills.push({name: "Rizhao Steel", lat: 35.4, lon: 119.5, marker: m});
+  m = L.marker([39.9, 116.3]).addTo(map)
+    .bindPopup("<b>Shougang Group</b>")
+    .bindTooltip("Shougang Group");
+  mills.push({name: "Shougang Group", lat: 39.9, lon: 116.3, marker: m});
+  m = L.marker([41.1, 123.0]).addTo(map)
+    .bindPopup("<b>Angang Steel</b>")
+    .bindTooltip("Angang Steel");
+  mills.push({name: "Angang Steel", lat: 41.1, lon: 123.0, marker: m});
+  m = L.marker([31.7, 118.5]).addTo(map)
+    .bindPopup("<b>Maanshan Steel</b>")
+    .bindTooltip("Maanshan Steel");
+  mills.push({name: "Maanshan Steel", lat: 31.7, lon: 118.5, marker: m});
+  m = L.marker([41.3, 123.8]).addTo(map)
+    .bindPopup("<b>Benxi Steel</b>")
+    .bindTooltip("Benxi Steel");
+  mills.push({name: "Benxi Steel", lat: 41.3, lon: 123.8, marker: m});
+  m = L.marker([24.3, 109.4]).addTo(map)
+    .bindPopup("<b>Liuzhou Steel</b>")
+    .bindTooltip("Liuzhou Steel");
+  mills.push({name: "Liuzhou Steel", lat: 24.3, lon: 109.4, marker: m});
+  m = L.marker([39.6, 118.2]).addTo(map)
+    .bindPopup("<b>Tangshan Steel</b>")
+    .bindTooltip("Tangshan Steel");
+  mills.push({name: "Tangshan Steel", lat: 39.6, lon: 118.2, marker: m});
+  m = L.marker([38.0, 114.5]).addTo(map)
+    .bindPopup("<b>Hebei Steel</b>")
+    .bindTooltip("Hebei Steel");
+  mills.push({name: "Hebei Steel", lat: 38.0, lon: 114.5, marker: m});
+  m = L.marker([39.5, 117.6]).addTo(map)
+    .bindPopup("<b>Jianlong Group</b>")
+    .bindTooltip("Jianlong Group");
+  mills.push({name: "Jianlong Group", lat: 39.5, lon: 117.6, marker: m});
+  m = L.marker([31.0, 111.0]).addTo(map)
+    .bindPopup("<b>Steel Mill 10</b>")
+    .bindTooltip("Steel Mill 10");
+  mills.push({name: "Steel Mill 10", lat: 31.0, lon: 111.0, marker: m});
+  m = L.marker([31.1, 111.1]).addTo(map)
+    .bindPopup("<b>Steel Mill 11</b>")
+    .bindTooltip("Steel Mill 11");
+  mills.push({name: "Steel Mill 11", lat: 31.1, lon: 111.1, marker: m});
+  m = L.marker([31.2, 111.2]).addTo(map)
+    .bindPopup("<b>Steel Mill 12</b>")
+    .bindTooltip("Steel Mill 12");
+  mills.push({name: "Steel Mill 12", lat: 31.2, lon: 111.2, marker: m});
+  m = L.marker([31.3, 111.3]).addTo(map)
+    .bindPopup("<b>Steel Mill 13</b>")
+    .bindTooltip("Steel Mill 13");
+  mills.push({name: "Steel Mill 13", lat: 31.3, lon: 111.3, marker: m});
+  m = L.marker([31.4, 111.4]).addTo(map)
+    .bindPopup("<b>Steel Mill 14</b>")
+    .bindTooltip("Steel Mill 14");
+  mills.push({name: "Steel Mill 14", lat: 31.4, lon: 111.4, marker: m});
+  m = L.marker([31.5, 111.5]).addTo(map)
+    .bindPopup("<b>Steel Mill 15</b>")
+    .bindTooltip("Steel Mill 15");
+  mills.push({name: "Steel Mill 15", lat: 31.5, lon: 111.5, marker: m});
+  m = L.marker([31.6, 111.6]).addTo(map)
+    .bindPopup("<b>Steel Mill 16</b>")
+    .bindTooltip("Steel Mill 16");
+  mills.push({name: "Steel Mill 16", lat: 31.6, lon: 111.6, marker: m});
+  m = L.marker([31.7, 111.7]).addTo(map)
+    .bindPopup("<b>Steel Mill 17</b>")
+    .bindTooltip("Steel Mill 17");
+  mills.push({name: "Steel Mill 17", lat: 31.7, lon: 111.7, marker: m});
+  m = L.marker([31.8, 111.8]).addTo(map)
+    .bindPopup("<b>Steel Mill 18</b>")
+    .bindTooltip("Steel Mill 18");
+  mills.push({name: "Steel Mill 18", lat: 31.8, lon: 111.8, marker: m});
+  m = L.marker([31.9, 111.9]).addTo(map)
+    .bindPopup("<b>Steel Mill 19</b>")
+    .bindTooltip("Steel Mill 19");
+  mills.push({name: "Steel Mill 19", lat: 31.9, lon: 111.9, marker: m});
+  m = L.marker([32.0, 112.0]).addTo(map)
+    .bindPopup("<b>Steel Mill 20</b>")
+    .bindTooltip("Steel Mill 20");
+  mills.push({name: "Steel Mill 20", lat: 32.0, lon: 112.0, marker: m});
+  m = L.marker([32.1, 112.1]).addTo(map)
+    .bindPopup("<b>Steel Mill 21</b>")
+    .bindTooltip("Steel Mill 21");
+  mills.push({name: "Steel Mill 21", lat: 32.1, lon: 112.1, marker: m});
+  m = L.marker([32.2, 112.2]).addTo(map)
+    .bindPopup("<b>Steel Mill 22</b>")
+    .bindTooltip("Steel Mill 22");
+  mills.push({name: "Steel Mill 22", lat: 32.2, lon: 112.2, marker: m});
+  m = L.marker([32.3, 112.3]).addTo(map)
+    .bindPopup("<b>Steel Mill 23</b>")
+    .bindTooltip("Steel Mill 23");
+  mills.push({name: "Steel Mill 23", lat: 32.3, lon: 112.3, marker: m});
+  m = L.marker([32.4, 112.4]).addTo(map)
+    .bindPopup("<b>Steel Mill 24</b>")
+    .bindTooltip("Steel Mill 24");
+  mills.push({name: "Steel Mill 24", lat: 32.4, lon: 112.4, marker: m});
+  m = L.marker([32.5, 112.5]).addTo(map)
+    .bindPopup("<b>Steel Mill 25</b>")
+    .bindTooltip("Steel Mill 25");
+  mills.push({name: "Steel Mill 25", lat: 32.5, lon: 112.5, marker: m});
+  m = L.marker([32.6, 112.6]).addTo(map)
+    .bindPopup("<b>Steel Mill 26</b>")
+    .bindTooltip("Steel Mill 26");
+  mills.push({name: "Steel Mill 26", lat: 32.6, lon: 112.6, marker: m});
+  m = L.marker([32.7, 112.7]).addTo(map)
+    .bindPopup("<b>Steel Mill 27</b>")
+    .bindTooltip("Steel Mill 27");
+  mills.push({name: "Steel Mill 27", lat: 32.7, lon: 112.7, marker: m});
+  m = L.marker([32.8, 112.8]).addTo(map)
+    .bindPopup("<b>Steel Mill 28</b>")
+    .bindTooltip("Steel Mill 28");
+  mills.push({name: "Steel Mill 28", lat: 32.8, lon: 112.8, marker: m});
+  m = L.marker([32.9, 112.9]).addTo(map)
+    .bindPopup("<b>Steel Mill 29</b>")
+    .bindTooltip("Steel Mill 29");
+  mills.push({name: "Steel Mill 29", lat: 32.9, lon: 112.9, marker: m});
+  m = L.marker([33.0, 113.0]).addTo(map)
+    .bindPopup("<b>Steel Mill 30</b>")
+    .bindTooltip("Steel Mill 30");
+  mills.push({name: "Steel Mill 30", lat: 33.0, lon: 113.0, marker: m});
+  m = L.marker([33.1, 113.1]).addTo(map)
+    .bindPopup("<b>Steel Mill 31</b>")
+    .bindTooltip("Steel Mill 31");
+  mills.push({name: "Steel Mill 31", lat: 33.1, lon: 113.1, marker: m});
+  m = L.marker([33.2, 113.2]).addTo(map)
+    .bindPopup("<b>Steel Mill 32</b>")
+    .bindTooltip("Steel Mill 32");
+  mills.push({name: "Steel Mill 32", lat: 33.2, lon: 113.2, marker: m});
+  m = L.marker([33.3, 113.3]).addTo(map)
+    .bindPopup("<b>Steel Mill 33</b>")
+    .bindTooltip("Steel Mill 33");
+  mills.push({name: "Steel Mill 33", lat: 33.3, lon: 113.3, marker: m});
+  m = L.marker([33.4, 113.4]).addTo(map)
+    .bindPopup("<b>Steel Mill 34</b>")
+    .bindTooltip("Steel Mill 34");
+  mills.push({name: "Steel Mill 34", lat: 33.4, lon: 113.4, marker: m});
+  m = L.marker([33.5, 113.5]).addTo(map)
+    .bindPopup("<b>Steel Mill 35</b>")
+    .bindTooltip("Steel Mill 35");
+  mills.push({name: "Steel Mill 35", lat: 33.5, lon: 113.5, marker: m});
+  m = L.marker([33.6, 113.6]).addTo(map)
+    .bindPopup("<b>Steel Mill 36</b>")
+    .bindTooltip("Steel Mill 36");
+  mills.push({name: "Steel Mill 36", lat: 33.6, lon: 113.6, marker: m});
+  m = L.marker([33.7, 113.7]).addTo(map)
+    .bindPopup("<b>Steel Mill 37</b>")
+    .bindTooltip("Steel Mill 37");
+  mills.push({name: "Steel Mill 37", lat: 33.7, lon: 113.7, marker: m});
+  m = L.marker([33.8, 113.8]).addTo(map)
+    .bindPopup("<b>Steel Mill 38</b>")
+    .bindTooltip("Steel Mill 38");
+  mills.push({name: "Steel Mill 38", lat: 33.8, lon: 113.8, marker: m});
+  m = L.marker([33.9, 113.9]).addTo(map)
+    .bindPopup("<b>Steel Mill 39</b>")
+    .bindTooltip("Steel Mill 39");
+  mills.push({name: "Steel Mill 39", lat: 33.9, lon: 113.9, marker: m});
+  m = L.marker([34.0, 114.0]).addTo(map)
+    .bindPopup("<b>Steel Mill 40</b>")
+    .bindTooltip("Steel Mill 40");
+  mills.push({name: "Steel Mill 40", lat: 34.0, lon: 114.0, marker: m});
+  m = L.marker([34.1, 114.1]).addTo(map)
+    .bindPopup("<b>Steel Mill 41</b>")
+    .bindTooltip("Steel Mill 41");
+  mills.push({name: "Steel Mill 41", lat: 34.1, lon: 114.1, marker: m});
+  m = L.marker([34.2, 114.2]).addTo(map)
+    .bindPopup("<b>Steel Mill 42</b>")
+    .bindTooltip("Steel Mill 42");
+  mills.push({name: "Steel Mill 42", lat: 34.2, lon: 114.2, marker: m});
+  m = L.marker([34.3, 114.3]).addTo(map)
+    .bindPopup("<b>Steel Mill 43</b>")
+    .bindTooltip("Steel Mill 43");
+  mills.push({name: "Steel Mill 43", lat: 34.3, lon: 114.3, marker: m});
+  m = L.marker([34.4, 114.4]).addTo(map)
+    .bindPopup("<b>Steel Mill 44</b>")
+    .bindTooltip("Steel Mill 44");
+  mills.push({name: "Steel Mill 44", lat: 34.4, lon: 114.4, marker: m});
+  m = L.marker([34.5, 114.5]).addTo(map)
+    .bindPopup("<b>Steel Mill 45</b>")
+    .bindTooltip("Steel Mill 45");
+  mills.push({name: "Steel Mill 45", lat: 34.5, lon: 114.5, marker: m});
+  m = L.marker([34.6, 114.6]).addTo(map)
+    .bindPopup("<b>Steel Mill 46</b>")
+    .bindTooltip("Steel Mill 46");
+  mills.push({name: "Steel Mill 46", lat: 34.6, lon: 114.6, marker: m});
+  m = L.marker([34.7, 114.7]).addTo(map)
+    .bindPopup("<b>Steel Mill 47</b>")
+    .bindTooltip("Steel Mill 47");
+  mills.push({name: "Steel Mill 47", lat: 34.7, lon: 114.7, marker: m});
+  m = L.marker([34.8, 114.8]).addTo(map)
+    .bindPopup("<b>Steel Mill 48</b>")
+    .bindTooltip("Steel Mill 48");
+  mills.push({name: "Steel Mill 48", lat: 34.8, lon: 114.8, marker: m});
+  m = L.marker([34.9, 114.9]).addTo(map)
+    .bindPopup("<b>Steel Mill 49</b>")
+    .bindTooltip("Steel Mill 49");
+  mills.push({name: "Steel Mill 49", lat: 34.9, lon: 114.9, marker: m});
 
 // Search logic
 const input = document.getElementById("searchInput");
