@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>China Steel Map</title>
+  <title>China Steel Map Preview</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -11,10 +10,10 @@
     html, body, #map { height: 100%; margin: 0; padding: 0; }
     #searchContainer {
       position: absolute;
-      top: 15px;
-      left: 15px;
+      top: 60px;
+      left: 60px;
       z-index: 9999;
-      background: white;
+      background-color: white;
       padding: 6px;
       border-radius: 6px;
       width: 260px;
@@ -43,28 +42,37 @@
 
 <script>
 var map = L.map('map').setView([34.5, 105], 5);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 18,
-  attribution: '© OpenStreetMap contributors'
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CartoDB',
+  subdomains: 'abcd',
+  maxZoom: 18
 }).addTo(map);
 
 const mills = [
   { name: "Baosteel", lat: 31.3, lon: 121.5 },
   { name: "Rizhao Steel", lat: 35.4, lon: 119.5 },
-  { name: "Shougang Group", lat: 39.9, lon: 116.3 },
-  { name: "Angang Steel", lat: 41.1, lon: 123.0 },
-  { name: "Maanshan Steel", lat: 31.7, lon: 118.5 },
-  { name: "Benxi Steel", lat: 41.3, lon: 123.8 },
-  { name: "Liuzhou Steel", lat: 24.3, lon: 109.4 },
-  { name: "Tangshan Steel", lat: 39.6, lon: 118.2 },
-  { name: "Hebei Steel", lat: 38.0, lon: 114.5 },
-  { name: "Jianlong Group", lat: 39.5, lon: 117.6 }
+  { name: "Shougang Group", lat: 39.9, lon: 116.3 }
 ];
 
 mills.forEach(m => {
   m.marker = L.marker([m.lat, m.lon]).addTo(map)
     .bindPopup("<b>" + m.name + "</b>")
     .bindTooltip(m.name);
+});
+
+const ports = [
+  { name: "Port of Shanghai", lat: 31.4, lon: 121.8 },
+  { name: "Port of Tianjin", lat: 39.0, lon: 117.7 },
+  { name: "Port of Guangzhou", lat: 23.1, lon: 113.3 }
+];
+
+ports.forEach(p => {
+  L.circleMarker([p.lat, p.lon], {
+    radius: 6,
+    color: "blue",
+    fillColor: "#33f",
+    fillOpacity: 0.8
+  }).addTo(map).bindPopup("<b>" + p.name + "</b>").bindTooltip(p.name);
 });
 
 const input = document.getElementById("searchInput");
