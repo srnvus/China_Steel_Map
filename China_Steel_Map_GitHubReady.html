@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>China Steel Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha512-XQoYMqMTK8LvdlxU8yP3rYXk8ePhRHFOKT9jvU0v+yKDjG68JQeZ+F8V+X13VURqk5i5kfwV3rQv5zM2PPe4Gw=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha512-sA+e2F4uXLdE6Ac+X3zyYOcC9SYrVjGZ1E6sFkvsT+Rljibz0UXYkqddTh45p7+BXyYxhgaV6+30z2RIpLr3rQ=="
+    crossorigin=""></script>
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #searchContainer {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 9999;
+      background-color: white;
+      padding: 6px;
+      border-radius: 6px;
+      width: 260px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    #searchInput {
+      width: 100%;
+      padding: 4px;
+      font-size: 14px;
+    }
+    #suggestions {
+      display: none;
+      border: 1px solid #ccc;
+      background: white;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+<div id="searchContainer">
+  <input type="text" id="searchInput" placeholder="Search steel mill...">
+  <div id="suggestions"></div>
+</div>
+
+<script>
+var map = L.map('map').setView([34.5, 105], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+const mills = [
+  { name: "Baosteel", lat: 31.3, lon: 121.5 },
+  { name: "Rizhao Steel", lat: 35.4, lon: 119.5 },
+  { name: "Shougang Group", lat: 39.9, lon: 116.3 },
+  { name: "Angang Steel", lat: 41.1, lon: 123.0 },
+  { name: "Maanshan Steel", lat: 31.7, lon: 118.5 },
+  { name: "Benxi Steel", lat: 41.3, lon: 123.8 },
+  { name: "Liuzhou Steel", lat: 24.3, lon: 109.4 },
+  { name: "Tangshan Steel", lat: 39.6, lon: 118.2 },
+  { name: "Hebei Steel", lat: 38.0, lon: 114.5 },
+  { name: "Jianlong Group", lat: 39.5, lon: 117.6 }
+];
+
+mills.forEach(m => {
+  m.marker = L.marker([m.lat, m.lon]).addTo(map)
+    .bindPopup("<b>" + m.name + "</b>")
+    .bindTooltip(m.name);
+});
+
+const input = document.getElementById("searchInput");
+const suggestionsBox = document.getElementById("suggestions");
+
+input.addEventListener("input", () => {
+  const val = input.value.trim().toLowerCase();
+  suggestionsBox.innerHTML = "";
+  if (!val) {
+    suggestionsBox.style.display = "none";
+    return;
+  }
+  const matches = mills.filter(m => m.name.toLowerCase().includes(val));
+  matches.forEach(m => {
+    const div = document.createElement("div");
+    div.textContent = m.name;
+    div.style.padding = "4px";
+    div.style.cursor = "pointer";
+    div.onmouseover = () => div.style.background = "#eee";
+    div.onmouseout = () => div.style.background = "white";
+    div.onclick = () => {
+      map.setView([m.lat, m.lon], 8);
+      if (m.marker) m.marker.openPopup();
+      input.value = "";
+      suggestionsBox.innerHTML = "";
+      suggestionsBox.style.display = "none";
+    };
+    suggestionsBox.appendChild(div);
+  });
+  suggestionsBox.style.display = matches.length ? "block" : "none";
+});
+
+document.addEventListener("click", (e) => {
+  if (!input.contains(e.target)) {
+    suggestionsBox.style.display = "none";
+  }
+});
+</script>
+</body>
+</html>
