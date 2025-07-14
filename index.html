@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>China Steel Map Preview</title>
+  <title>China Steel Map - Final</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -34,20 +34,20 @@
   </style>
 </head>
 <body>
-  <div id="map"></div>
-  <div id="searchContainer">
-    <input type="text" id="searchInput" placeholder="Search steel mill...">
-    <div id="suggestions"></div>
-  </div>
+<div id="map"></div>
+<div id="searchContainer">
+  <input type="text" id="searchInput" placeholder="Search steel mill...">
+  <div id="suggestions"></div>
+</div>
 
 <script>
 var map = L.map('map').setView([34.5, 105], 5);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; OpenStreetMap &copy; CartoDB',
-  subdomains: 'abcd',
+L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png', {
+  attribution: 'Map tiles by Stamen Design, OpenStreetMap',
   maxZoom: 18
 }).addTo(map);
 
+// Steel mills
 const mills = [
   { name: "Baosteel", lat: 31.3, lon: 121.5 },
   { name: "Rizhao Steel", lat: 35.4, lon: 119.5 },
@@ -60,6 +60,7 @@ mills.forEach(m => {
     .bindTooltip(m.name);
 });
 
+// Ports
 const ports = [
   { name: "Port of Shanghai", lat: 31.4, lon: 121.8 },
   { name: "Port of Tianjin", lat: 39.0, lon: 117.7 },
@@ -75,6 +76,22 @@ ports.forEach(p => {
   }).addTo(map).bindPopup("<b>" + p.name + "</b>").bindTooltip(p.name);
 });
 
+// Province capitals
+const capitals = [
+  { name: "Beijing", lat: 39.9042, lon: 116.4074 },
+  { name: "Shanghai", lat: 31.2304, lon: 121.4737 },
+  { name: "Guangzhou", lat: 23.1291, lon: 113.2644 },
+  { name: "Wuhan", lat: 30.5928, lon: 114.3055 },
+  { name: "Chengdu", lat: 30.5728, lon: 104.0668 }
+];
+
+capitals.forEach(c => {
+  L.marker([c.lat, c.lon]).addTo(map)
+    .bindPopup("<b>" + c.name + "</b>")
+    .bindTooltip(c.name);
+});
+
+// Search logic
 const input = document.getElementById("searchInput");
 const suggestionsBox = document.getElementById("suggestions");
 
